@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExerciseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+// All Exercises
+Route::get('/', [ExerciseController::class, 'index']);
+
+
+// Single Exercise
+Route::get('/exercises/{exercise}', [ExerciseController::class, 'show']);
