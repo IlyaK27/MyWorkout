@@ -20,6 +20,8 @@
                     extend: {
                         colors: {
                             laravel: "#0C5170",
+                            flash_message: "#0472A6",
+                            gray_color:"#2E2E2E"
                         },
                     },
                 },
