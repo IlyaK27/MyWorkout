@@ -1,4 +1,4 @@
-@props(['exercise'])
+@props(['workout'])
 
 <x-card>
     <div class="flex">
@@ -9,10 +9,10 @@
         />
         <div>
             <h3 class="text-2xl">
-                <a href="/exercises/{{$exercise->id}}">{{$exercise->title}}</a>
+                <a href="/workouts/{{$workout->id}}">{{$workout->title}}</a>
             </h3>
             {{--<div class="text-xl font-bold mb-4">{{$listing->company}}</div>--}}
-            <x-exercise-tags :tagsCsv="$exercise->tags"/>
+            <x-workout-tags :tagsCsv="$workout->tags"/>
         </div>
     </div>
 </x-card>

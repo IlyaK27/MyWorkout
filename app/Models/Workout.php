@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Exercise extends Model
+class Workout extends Model
 {
     use HasFactory;
 
@@ -19,5 +19,10 @@ class Exercise extends Model
             ->orWhere('description', 'like', '%' . request('search') . '%')
             ->orWhere('tags', 'like', '%' . request('search') . '%');
         }
+    }
+
+    // Relationship To User
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

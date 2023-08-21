@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ExerciseController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkoutController;
+use App\Http\Controllers\ExerciseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,17 @@ use Illuminate\Support\Facades\Route;
 // All Exercises
 Route::get('/', [ExerciseController::class, 'index']);
 
-
 // Single Exercise
 Route::get('/exercises/{exercise}', [ExerciseController::class, 'show']);
+
+// All Workouts
+Route::get('/workouts', [WorkoutController::class, 'index']);
+
+// Create Workout Form
+Route::get('/workouts/create', [WorkoutController::class, 'create'])->middleware('auth');
+
+// Single Workout
+Route::get('/workouts/{workout}', [WorkoutController::class, 'show']);
 
 // Show Register/Create Form
 Route::get('register', [UserController::class, 'create'])->middleware('guest');

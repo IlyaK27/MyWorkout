@@ -42,9 +42,9 @@
                 </span>
             </li>
             <li>
-                <a href="/listings/manage" class="hover:text-black"
+                <a href="/workouts/manage" class="hover:text-black"
                     ><i class="fa-solid fa-gear"></i>
-                    Manage Listings</a
+                    Manage Workouts</a
                 >
             </li>
             <li>

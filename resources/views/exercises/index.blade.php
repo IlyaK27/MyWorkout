@@ -1,11 +1,11 @@
 <x-layout>
-    @include('partials._hero')
-    @include('partials._search')
+    @include('exercise_partials._hero')
+    @include('exercise_partials._search')
 
     <div class="lg:grid lg:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
     @unless(count($exercises) == 0)
     @foreach($exercises as $exercise)
-        <x-exercise-card :exercise="$exercises" /> 
+        <x-exercise-card :exercise="$exercise" /> 
     @endforeach
 
     @else

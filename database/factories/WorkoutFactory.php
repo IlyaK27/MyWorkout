@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Exercise>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Workout>
  */
-class ExerciseFactory extends Factory
+class WorkoutFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class ExerciseFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'tags' => 'chest, arms, back, legs',
+            'tags' => 'chest day, arm day',
             'description' => $this->faker->paragraph(5),
         ];
     }
