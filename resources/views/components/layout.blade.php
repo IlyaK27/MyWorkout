@@ -39,7 +39,7 @@
             <li>
                 <span class="font-bold uppercase">
                     Welcome {{auth()->user()->name}}
-                </span>
+                </span  >
             </li>
             <li>
                 <a href="/workouts/manage" class="hover:text-black"

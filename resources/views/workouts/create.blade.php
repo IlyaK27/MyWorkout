@@ -7,7 +7,7 @@
             <p class="mb-4">Create and keep track of your workout</p>
         </header>
     
-        <form method="POST" action="/listings" enctype="multipart/form-data">
+        <form method="POST" action="/workouts" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="title" class="inline-block text-lg mb-2">Workout Name</label>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="mb-6">
                     <label for="logo" class="inline-block text-lg mb-2">
-                        Workout Picture
+                        Workout logo
                     </label>
                     <input
                         type="file"
@@ -57,7 +57,7 @@
                         name="description"
                         rows="10"
                         placeholder="Include general information, who it's meant for, strength vs hypertrophy, etc"
-                    >{{old('company')}}</textarea>
+                    >{{old('description')}}</textarea>
                     @error('description')
                         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                     @enderror
@@ -67,7 +67,7 @@
                     <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
                         Create Workout
                     </button>
-                    <a href="/" class="text-black ml-4"> Back </a>
+                    <a href="/workouts" class="text-black ml-4"> Back </a>
                 </div>
         </form>
     </x-card>

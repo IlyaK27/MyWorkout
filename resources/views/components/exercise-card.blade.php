@@ -11,7 +11,7 @@
             <h3 class="text-2xl">
                 <a href="/exercises/{{$exercise->id}}">{{$exercise->title}}</a>
             </h3>
-            {{--<div class="text-xl font-bold mb-4">{{$listing->company}}</div>--}}
+            <div class="text-xl font-bold mb-1"></div> {{--To create more space between title and tags--}}
             <x-exercise-tags :tagsCsv="$exercise->tags"/>
         </div>
     </div>

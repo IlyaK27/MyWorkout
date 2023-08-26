@@ -42,4 +42,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // Relationship With Workouts
+    public function workouts() {
+        return $this->hasMany(Workout::class, 'user_id');
+    }
 }

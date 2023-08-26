@@ -13,7 +13,7 @@
     
                             <h3 class="text-2xl mb-2">{{$exercise->title}}</h3>
                             <x-exercise-tags :tagsCsv="$exercise->tags"/>
-                            <div class="border border-gray-200 w-full mb-6"></div>
+                            <div class="border border-gray-200 w-full mt-4 mb-6"></div>
                         </div>
                     </x-card>
                 </div>
