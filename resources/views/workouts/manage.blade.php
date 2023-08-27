@@ -8,8 +8,9 @@
 
         <table class="w-full table-auto rounded-sm">
             <tbody>
-                <x-workout-exercise :tagsCsv="$workout-exercise->exercises"/>
-                {{--<tr class="border-x-2 border-gray-300">
+                @unless($workouts->isEmpty())
+                @foreach($workouts as $workout)
+                <tr class="border-x-2 border-gray-300">
                     <td class="px-6 py-8 border-t border-b border-gray-300 text-lg" width="1100">
                         <a href="/workouts/{{$workout->id}}">
                             {{$workout->title}}
@@ -41,11 +42,14 @@
                         </form>
                     </td>
                 </tr>
+                @endforeach
+                @else
                 <tr class="border-gray-300">
                     <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
                         <p class="text-center">No Workouts Found</p>
                     </td>
-                </tr>--}}
+                </tr>
+                @endunless
             </tbody>
         </table>
         <a href="/workouts/create" class="inline-block text-black ml-2 mt-5"><i class="fa-solid fa-plus"></i> Create Workout</a>

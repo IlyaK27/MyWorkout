@@ -14,6 +14,14 @@
                 <h3 class="text-2xl mb-4">{{$workout->title}}</h3>
                 <x-exercise-tags :tagsCsv="$workout->tags"/>
                 <div class="border border-gray-200 w-full mt-4 mb-6"></div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-4">
+                        Workout Description
+                    </h3>
+                    <div class="text-lg space-y-6">
+                        {{$workout->description}}
+                    </div>
+                </div>
             </div>
         </x-card>
         <x-card class="mt-4 p-2 flex space-x-6">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Workout;
+use App\Models\Exercise;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -32,7 +33,7 @@ class WorkoutController extends Controller
         $formFields = $request->validate([
             'title' => 'required',
             'tags' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
 
         if($request->hasFile('logo')){
@@ -88,7 +89,7 @@ class WorkoutController extends Controller
         }
 
         $workout->delete();
-        return redirect('/')->with('message', 'Listing deleted successfully');
+        return redirect('/')->with('message', 'Workout deleted successfully');
     }
 
     // Manage Workout
