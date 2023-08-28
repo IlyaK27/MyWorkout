@@ -26,6 +26,9 @@ Route::get('/', [ExerciseController::class, 'index']);
 // Single Exercise
 Route::get('/exercises/{exercise}', [ExerciseController::class, 'show']);
 
+// Selectable Exercises
+Route::get('/workouts/{workout}/customize/select', [ExerciseController::class, 'select']);
+
 // All Workouts
 Route::get('/workouts', [WorkoutController::class, 'index']);
 
@@ -41,8 +44,14 @@ Route::get('/workouts/{workout}/edit', [WorkoutController::class, 'edit']);
 // Customize Workout Form
 Route::get('/workouts/{workout}/customize', [WorkoutController::class, 'customize']);
 
+// Adjust Workout Exercise
+Route::get('/workouts/{workout}/adjust/{exercise}', [WorkoutController::class, 'adjust'])->middleware('auth');
+
 // Update Workout
 Route::put('/workouts/{workout}', [WorkoutController::class, 'update'])->middleware('auth');
+
+// Update Workout Exericse
+Route::put('/workouts/{workout}/customize', [WorkoutController::class, 'save'])->middleware('auth');
 
 // Delete Workout
 Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy'])->middleware('auth');

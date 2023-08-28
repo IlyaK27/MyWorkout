@@ -57,9 +57,13 @@ class WorkoutController extends Controller
         return view('workouts.customize', ['workout' => $workout]);
     }
 
+    // Show Workout Exercise Adjust Form
+    public function adjust(Workout $workout, $index){
+        return view('workouts.adjust', ['workout' => $workout], ['index' => $index]);
+    }
+
     // Update Workout Data
     public function update(Request $request, Workout $workout){
-
         // Make sure logged in user is owner
         if($workout->user_id != auth()->id()){
             abort(403, 'Unauthorized Action');
@@ -78,6 +82,39 @@ class WorkoutController extends Controller
         $workout->update($formFields);
 
         return back()->with('message', 'Workout updated successfully!');
+    }
+
+    // Update Workout Exercise Data
+    public function save(Request $request, Workout $workout){
+        // Make sure logged in user is owner
+        if($workout->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+
+        $formFields = $request->validate([
+            'sets' => 'required',
+            'reps' => 'required',
+            'rest' => 'required',
+            'allsets' => 'required',
+            'allreps' => 'required',
+            'allrests' => 'required',
+            'index' => 'required',
+        ]);
+        $newSets = explode(',', $formFields['allsets']);
+        $newSets[$formFields['index']] = $formFields['sets'];
+        $newSets = implode(',', $newSets);
+
+        $newReps = explode(',', $formFields['allreps']);
+        $newReps[$formFields['index']] = $formFields['reps'];
+        $newReps = implode(',', $newReps);
+
+        $newRests = explode(',', $formFields['allrests']);
+        $newRests[$formFields['index']] = $formFields['rest'];
+        $newRests = implode(',', $newRests);
+
+        $newData = array("sets" => $newSets, "reps" => $newReps, "rest" => $newRests);
+        $workout->update($newData);
+        return back()->with('message', 'Exercise updated successfully!');
     }
 
     // Delete Workout

@@ -21,4 +21,11 @@ class ExerciseController extends Controller
             'exercise' => $exercise
         ]);
     }
+
+    // Show Selectable Exercises
+    public function select(){
+        return view('workouts.select', [
+            'exercises' => Exercise::latest()->filter(request(['tag', 'search']))->paginate(8)
+        ]);
+    }
 }

@@ -1,4 +1,3 @@
-@props(['exercisesCsv'])
 @props(['workout'])
 
 <form action="/workouts/{{$workout->id}}/customize">
@@ -34,12 +33,16 @@
 </form>
 
 @php
-    $exercises = explode(',', $exercisesCsv);
+    $exercises = explode(',', $workout->exercises);
+    $sets = explode(',', $workout->sets);
+    $reps = explode(',', $workout->reps);
+    $rests = explode(',', $workout->rest);
     $mysqli = new mysqli('localhost', 'IlyaK', 'password', 'MyWorkout');
 
     if ($mysqli->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    $index = -1;
 @endphp
 
 <ul class="flex">
@@ -52,29 +55,63 @@
                                         OR description LIKE '%{$search}%'
                                         OR tags LIKE '%{$search}%')");
         $row = $result->fetch_assoc();
+        $index++;
     ?>
     @unless($row == null)
     <tr class="border-x-2 border-gray-300">
-        <td class="px-6 py-8 border-t border-b border-gray-300 text-lg" width="1050">
+        <td class="px-6 py-8 border-t border-b border-gray-300 text-lg" width="850">
             <a href="/exercises/{{$exercise}}">{{$row['title']}}</a>
         </td>
-        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="250">
-            <a href="/workouts/{{$exercise}}/edit" class="text-laravel-400 px-6 py-2 rounded-xl">   
-                <i class="fa fa-gear text-gray_color"></i>
-                Sets = 
+        <td class="px-6 py-8 border-t border-b border-gray-300 text-lg" width="225">
+            <a href="/workouts/{{$workout->id}}/adjust/{{$index}}" class="text-gray_color-700 px-6 py-2 rounded-xl">   
+                <i class="fa-solid fa-gear"></i>
+                Adjust
             </a>
         </td>
-        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="250">
-            <a href="/workouts/{{$exercise}}/edit" class="text-laravel-400 px-6 py-2 rounded-xl">   
+        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="225">
+            <div class="text-laravel-400 px-6 py-2 rounded-xl">   
+                <i class="fa fa-pencil-square text-gray_color"></i>
+                <?php
+                    if(isset($sets[$index]) && $sets[$index] != ""){
+                        echo "Sets = {$sets[$index]}";
+                    }
+                    else{
+                        echo "Sets = 0";
+                    }
+                ?>
+            </div>
+        </td>
+        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="200">
+            <div class="text-laravel-400 px-6 py-2 rounded-xl">   
                 <i class="fa-solid fa-sort-numeric-asc"></i>
-                Reps =
-            </a>
+                <?php
+                    if(isset($reps[$index]) && $reps[$index] != ""){
+                        echo "Reps = {$reps[$index]}";
+                    }
+                    else{
+                        echo "Reps = 0";
+                    }
+                ?>
+            </div>
         </td>
         <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="350">
-            <a href="/workouts/{{$exercise}}/customize" class="text-blue-300 px-6 py-2 rounded-xl">   
+            <div class="text-blue-300 px-6 py-2 rounded-xl">   
                 <i class="fa-solid fa-clock"></i>
-                Rest time between sets
-            </a>
+                <?php
+                    if(isset($rests[$index]) && $rests[$index] != "" && $rests[$index] != "0"){
+                        $minutes = intdiv($rests[$index], 60);
+                        $seconds = $rests[$index] % 60;
+                        $ending = " minutes"; // Formatting so there are always 2 digits for seconds
+                        if($seconds < 10){
+                            $ending = "0 minutes";
+                        }
+                        echo "Rest per set = " . $minutes . ":" . $seconds . $ending;
+                    }
+                    else{
+                        echo "Rest per set = None";
+                    }
+                ?>
+            </div>
         </td>
         <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="125">
             <form method="POST" action="/workouts/{{$exercise}}">
