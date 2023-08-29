@@ -117,6 +117,54 @@ class WorkoutController extends Controller
         return back()->with('message', 'Exercise updated successfully!');
     }
 
+    // Add Exercise to Workout
+    public function add(Request $request, Workout $workout){
+        // Make sure logged in user is owner
+        if($workout->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+
+        $formFields = $request->validate([
+            'exercise' => 'required'
+        ]);
+
+        $exercises = $workout->exercises . "," . $formFields['exercise'];
+
+        $sets = $workout->sets . ",0";
+        
+        $reps = $workout->reps . ",0";
+
+        $rest = $workout->rest . ",0";
+
+        $newData = array("exercises" => $exercises, "sets" => $sets, "reps" => $reps, "rest" => $rest);
+        $workout->update($newData);
+        return back()->with('message', 'Workout updated successfully!');
+    }
+
+    // Remove Exercise to Workout
+    public function remove(Request $request, Workout $workout){
+        // Make sure logged in user is owner
+        if($workout->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+
+        $formFields = $request->validate([
+            'index' => 'required'
+        ]);
+
+        $exercises = substr($workout->exercises, 0, $formFields['index'] * 2 - 1) . substr($workout->exercises, $formFields['index'] * 2 + 1);
+
+        $sets = substr($workout->sets, 0, $formFields['index'] * 2 - 1) . substr($workout->sets, $formFields['index'] * 2 + 1);
+        
+        $reps = substr($workout->reps, 0, $formFields['index'] * 2 - 1) . substr($workout->reps, $formFields['index'] * 2 + 1);
+
+        $rest = substr($workout->rest, 0, $formFields['index'] * 2 - 1) . substr($workout->rest, $formFields['index'] * 2 + 1);
+
+        $newData = array("exercises" => $exercises, "sets" => $sets, "reps" => $reps, "rest" => $rest);
+        $workout->update($newData);
+        return back()->with('message', 'Exercise removed successfully!');
+    }
+
     // Delete Workout
     public function destroy(Workout $workout){
 

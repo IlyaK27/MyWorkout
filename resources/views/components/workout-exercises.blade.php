@@ -114,9 +114,14 @@
             </div>
         </td>
         <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="125">
-            <form method="POST" action="/workouts/{{$exercise}}">
+            <form method="POST" action="/workouts/{{$workout->id}}">
                 @csrf
-                @method('DELETE')
+                @method('PUT')
+                <input
+                    type="hidden"
+                    name="index" 
+                    value="{{$index}}"
+                />
                 <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
             </form>
         </td>

@@ -3,8 +3,10 @@
 <x-card>
     <div class="flex">
         <img
-            class="hidden w-48 mr-6 md:block"
-            {{--src="{{$exercise->logo ? asset('storage/' . $exercise->logo) : asset('/images/no-image.png')}}"--}}
+            class="hidden w-18 mr-6 md:block"
+            src="{{$exercise->logo ? asset('storage/' . $exercise->logo) : asset('/images/no-exercise-image.png')}}"
+            width="125" 
+            height="125"
             alt=""
         />
         <div>

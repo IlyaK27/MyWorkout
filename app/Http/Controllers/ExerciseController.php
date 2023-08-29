@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Workout;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class ExerciseController extends Controller
     // Show all Exercises
     public function index(){
         return view('exercises.index', [
-            'exercises' => Exercise::latest()->filter(request(['tag', 'search']))->paginate(4)
+            'exercises' => Exercise::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
 
@@ -23,9 +24,9 @@ class ExerciseController extends Controller
     }
 
     // Show Selectable Exercises
-    public function select(){
+    public function select(Workout $workout){
         return view('workouts.select', [
             'exercises' => Exercise::latest()->filter(request(['tag', 'search']))->paginate(8)
-        ]);
+        ], ['workout' => $workout]);
     }
 }

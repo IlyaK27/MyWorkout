@@ -50,8 +50,14 @@ Route::get('/workouts/{workout}/adjust/{exercise}', [WorkoutController::class, '
 // Update Workout
 Route::put('/workouts/{workout}', [WorkoutController::class, 'update'])->middleware('auth');
 
-// Update Workout Exericse
+// Update Workout Exercise
 Route::put('/workouts/{workout}/customize', [WorkoutController::class, 'save'])->middleware('auth');
+
+// Add Exercise to Workout
+Route::put('/workouts/{workout}/customize/select', [WorkoutController::class, 'add'])->middleware('auth');
+
+// Delete Workout Exercise
+Route::put('/workouts/{workout}', [WorkoutController::class, 'remove'])->middleware('auth');
 
 // Delete Workout
 Route::delete('/workouts/{workout}', [WorkoutController::class, 'destroy'])->middleware('auth');
