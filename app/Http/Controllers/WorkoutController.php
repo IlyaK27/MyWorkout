@@ -127,15 +127,18 @@ class WorkoutController extends Controller
         $formFields = $request->validate([
             'exercise' => 'required'
         ]);
-
-        $exercises = $workout->exercises . "," . $formFields['exercise'];
-
-        $sets = $workout->sets . ",0";
-        
-        $reps = $workout->reps . ",0";
-
-        $rest = $workout->rest . ",0";
-
+        if($workout->exercises == ""){
+            $exercises = $formFields['exercise'];
+            $sets = "0";
+            $reps = "0";
+            $rest = "0";
+        }
+        else{
+            $exercises = $workout->exercises . "," . $formFields['exercise'];
+            $sets = $workout->sets . ",0";
+            $reps = $workout->reps . ",0";
+            $rest = $workout->rest . ",0";
+        }
         $newData = array("exercises" => $exercises, "sets" => $sets, "reps" => $reps, "rest" => $rest);
         $workout->update($newData);
         return back()->with('message', 'Workout updated successfully!');
