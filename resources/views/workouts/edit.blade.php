@@ -7,7 +7,7 @@
             <p class="mb-4">Edit: {{$workout->title}}</p>
         </header>
     
-        <form method="POST" action="/workouts/{{$workout->id}}" enctype="multipart/form-data">
+        <form method="POST" action="/workouts/{{$workout->id}}/edit" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-6">
@@ -73,13 +73,50 @@
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
+
+            <div class="mb-6">
+                <label for="tags" class="inline-block text-lg mb-2">
+                    Visibility
+                </label>
+                <input
+                    <?php if ($workout->visibility == "Private"){echo 'checked="checked"';} ?>
+                    type="radio"
+                    id="private"
+                    class="text-xl font-bold ml-5"
+                    name="visibility" 
+                    value="Private"
+                    checked
+                />
+                <label for="private">Private</label>
+                <input
+                    <?php if ($workout->visibility == "Anonymous"){echo 'checked="checked"';} ?>
+                    type="radio"
+                    id="anonymous"
+                    class="text-xl font-bold ml-5"
+                    name="visibility" 
+                    value="Anonymous"
+                />
+                <label for="anonymous">Anonymous</label>
+                <input
+                    <?php if ($workout->visibility == "Public"){echo 'checked="checked"';} ?>
+                    type="radio"
+                    id="public"
+                    class="text-xl font-bold ml-5"
+                    name="visibility" 
+                    value="Public"
+                />
+                <label for="public">Public</label>
+                @error('visibility')
+                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
     
             <div class="mb-6">
                 <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
                     Update Workout
                 </button>
     
-                <a href="/" class="text-black ml-4"> Back </a>
+                <a href="/workouts/manage" class="text-black ml-4"> Back </a>
             </div>
         </form>
     </x-card>

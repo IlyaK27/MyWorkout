@@ -48,7 +48,7 @@ Route::get('/workouts/{workout}/customize', [WorkoutController::class, 'customiz
 Route::get('/workouts/{workout}/adjust/{exercise}', [WorkoutController::class, 'adjust'])->middleware('auth');
 
 // Update Workout
-Route::put('/workouts/{workout}', [WorkoutController::class, 'update'])->middleware('auth');
+Route::put('/workouts/{workout}/edit', [WorkoutController::class, 'update'])->middleware('auth');
 
 // Update Workout Exercise
 Route::put('/workouts/{workout}/customize', [WorkoutController::class, 'save'])->middleware('auth');

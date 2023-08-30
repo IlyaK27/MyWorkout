@@ -52,6 +52,7 @@
                 @endunless
             </tbody>
         </table>
-        <a href="/workouts/create" class="inline-block text-black ml-2 mt-5"><i class="fa-solid fa-plus"></i> Create Workout</a>
+        <a href="/workouts" class="inline-block text-black ml-3 mt-5"><i class="fa-solid fa-mail-reply"></i> Back</a>
+        <a href="/workouts/create" class="inline-block text-black mr-3 mt-5" style="float: right;"><i class="fa-solid fa-plus"></i> Create Workout</a>
     </x-card>
 </x-layout>

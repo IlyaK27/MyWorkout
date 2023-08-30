@@ -7,7 +7,7 @@
                 class="fa fa-search text-gray-400 z-20 hover:text-gray-500"
             ></i>
         </div>
-        <form action="/action_page.php" method="get">
+        <form action="/" method="get">
         <?php 
             if(isset($_GET['search'])){
                 $search = $_GET['search'];
@@ -127,8 +127,8 @@
         </td>
     </tr>
     @endunless
-    <?php
-        //$mysqli->close();
-    ?>
     @endforeach
+    <?php
+        $mysqli->close();
+    ?>
 </ul>

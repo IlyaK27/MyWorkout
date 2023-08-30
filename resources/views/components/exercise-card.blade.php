@@ -10,10 +10,9 @@
             alt=""
         />
         <div>
-            <h3 class="text-2xl">
+            <h3 class="text-2xl mb-2">
                 <a href="/exercises/{{$exercise->id}}">{{$exercise->title}}</a>
             </h3>
-            <div class="text-xl font-bold mb-1"></div> {{--To create more space between title and tags--}}
             <x-exercise-tags :tagsCsv="$exercise->tags"/>
         </div>
     </div>

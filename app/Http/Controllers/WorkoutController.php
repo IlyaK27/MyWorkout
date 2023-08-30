@@ -34,6 +34,7 @@ class WorkoutController extends Controller
             'title' => 'required',
             'tags' => 'required',
             'description' => 'required',
+            'visibility' => 'required'
         ]);
 
         if($request->hasFile('logo')){
@@ -68,13 +69,12 @@ class WorkoutController extends Controller
         if($workout->user_id != auth()->id()){
             abort(403, 'Unauthorized Action');
         }
-
         $formFields = $request->validate([
             'title' => 'required',
             'tags' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'visibility' => 'required'
         ]);
-
         if($request->hasFile('logo')){
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }

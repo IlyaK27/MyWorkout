@@ -1,6 +1,13 @@
 <x-layout>
     @include('workout_partials._search')
-    
+    @php
+        $mysqli = new mysqli('localhost', 'IlyaK', 'password', 'MyWorkout');
+
+        if ($mysqli->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        $name = $mysqli->query("SELECT * FROM users u JOIN workouts w ON w.user_id = u.id WHERE w.id = {$workout->id}")->fetch_assoc()['name'];
+    @endphp
     <a href="/workouts" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back</a>
     <div class="mx-4">
         <x-card class="p-10">
@@ -11,7 +18,10 @@
                     alt=""
                 />
     
-                <h3 class="text-2xl mb-4">{{$workout->title}}</h3>
+                <h2 class="text-2xl mb-3" style="font-size: 35px">{{$workout->title}}</h2>
+                @if($workout->visibility == "Public")
+                    <h3 class="mb-3" style="font-size: 20px">By: {{$name}}</h3>
+                @endif
                 <x-exercise-tags :tagsCsv="$workout->tags"/>
                 <div class="border border-gray-200 w-full mt-4 mb-6"></div>
                 <div>
@@ -37,4 +47,7 @@
             @endif
         </x-card>
     </div>
+    <?php
+        mysqli_close($mysqli);
+    ?>
 </x-layout>

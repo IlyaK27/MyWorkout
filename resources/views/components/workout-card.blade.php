@@ -1,4 +1,5 @@
 @props(['workout'])
+@props(['collumn'])
 
 <x-card>
     <div class="flex">
@@ -10,11 +11,13 @@
             alt=""
         />
         <div>
-            <h3 class="text-2xl">
+            <h3 class="text-2xl mb-2">
                 <a href="/workouts/{{$workout->id}}">{{$workout->title}}</a>
             </h3>
-            <div class="text-xl font-bold mb-1"></div> {{--To create more space between title and tags--}}
             <x-workout-tags :tagsCsv="$workout->tags"/>
         </div>
+        @if($workout->visibility == "Public")
+            <div class="mt-1 ml-2" style="font-size:18px; float: right"> By: {{$collumn['name']}}</div>
+        @endif
     </div>
 </x-card>

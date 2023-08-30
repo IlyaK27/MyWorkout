@@ -64,6 +64,40 @@
                 </div>
     
                 <div class="mb-6">
+                    <label for="tags" class="inline-block text-lg mb-2">
+                        Visibility
+                    </label>
+                    <input
+                        type="radio"
+                        id="private"
+                        class="text-xl font-bold ml-5"
+                        name="visibility" 
+                        value="Private"
+                        checked
+                    />
+                    <label for="private">Private</label>
+                    <input
+                        type="radio"
+                        id="anonymous"
+                        class="text-xl font-bold ml-5"
+                        name="visibility" 
+                        value="Anonymous"
+                    />
+                    <label for="anonymous">Anonymous</label>
+                    <input
+                        type="radio"
+                        id="public"
+                        class="text-xl font-bold ml-5"
+                        name="visibility" 
+                        value="Public"
+                    />
+                    <label for="public">Public</label>
+                    @error('visibility')
+                        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                    @enderror
+                </div>
+
+                <div class="mb-6">
                     <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
                         Create Workout
                     </button>
