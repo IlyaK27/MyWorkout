@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Scopes\VisibilityScope;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Workout extends Model
 {
@@ -26,5 +27,11 @@ class Workout extends Model
     // Relationship To User
     public function user(){
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // Adding global scope
+    protected static function booted(): void
+    {
+        static::addGlobalScope(new VisibilityScope);
     }
 }

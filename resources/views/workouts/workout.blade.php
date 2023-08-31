@@ -35,7 +35,10 @@
             </div>
         </x-card>
         <x-card class="mt-4 p-2 flex space-x-6">
-            <a href="/workouts/create" class="text-gray_color"><i class="fa fa-clone text-gray_color"></i> Copy Workout</a>
+            <form method="POST" action="/workouts/{{$workout->id}}" enctype="multipart/form-data">
+                @csrf
+                <button class="text-gray_color"><i class="fa fa-clone text-gray_color"></i> Copy Workout</button>
+            </form>
             @if(auth()->id() == $workout->user_id)
             <a href="/workouts/{{$workout->id}}/edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
             <a href="/workouts/{{$workout->id}}/customize" class="text-blue-300"><i class="fa-solid fa-pen-to-square text-blue-300"></i> Customize</a>

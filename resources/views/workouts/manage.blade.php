@@ -17,10 +17,10 @@
                         </a>
                     </td>
                     <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="300">
-                        <a href="/workouts/{{$workout->id}}/edit" class="text-laravel-400 px-6 py-2 rounded-xl">   
-                            <i class="fa fa-clone text-gray_color"></i>
-                            Copy Workout
-                        </a>
+                        <form method="POST" action="/workouts/{{$workout->id}}" enctype="multipart/form-data">
+                            @csrf
+                            <button class="text-laravel-400 px-6 rounded-xl"><i class="fa fa-clone text-gray_color"></i> Copy Workout</button>
+                        </form>
                     </td>
                     <td class="px-4 py-8 border-t border-b border-gray-300 text-lg" width="250">
                         <a href="/workouts/{{$workout->id}}/edit" class="text-laravel-400 px-6 py-2 rounded-xl">   

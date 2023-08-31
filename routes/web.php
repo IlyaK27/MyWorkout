@@ -38,6 +38,9 @@ Route::get('/workouts/create', [WorkoutController::class, 'create'])->middleware
 // Store Workout Data
 Route::post('/workouts', [WorkoutController::class, 'store'])->middleware('auth');
 
+// Copy Workout
+Route::post('/workouts/{workout}', [WorkoutController::class, 'copy'])->middleware('auth');
+
 // Edit Workout Form
 Route::get('/workouts/{workout}/edit', [WorkoutController::class, 'edit']);
 

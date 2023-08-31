@@ -48,6 +48,25 @@ class WorkoutController extends Controller
         return redirect('/')->with('message', 'Workout created successfully!');
     }
 
+    // Copy and Store Workout Data
+    public function copy(Workout $workout){
+        $newData =[
+            'user_id' => auth()->id(),
+            'title' => $workout->title,
+            'tags' => $workout->tags,
+            'description' => $workout->description,
+            'exercises' => $workout->exercises,
+            'sets' => $workout->sets,
+            'reps' => $workout->reps,
+            'rest' => $workout->rest,
+            'logo' => $workout->logo,
+        ];
+
+        Workout::create($newData);
+
+        return redirect('/workouts/manage')->with('message', 'Workout copied successfully!');
+    }
+
     // Show Workout Edit Form
     public function edit(Workout $workout){
         return view('workouts.edit', ['workout' => $workout]);
@@ -177,7 +196,7 @@ class WorkoutController extends Controller
         }
 
         $workout->delete();
-        return redirect('/')->with('message', 'Workout deleted successfully');
+        return redirect('/workouts/manage')->with('message', 'Workout deleted successfully');
     }
 
     // Manage Workout
