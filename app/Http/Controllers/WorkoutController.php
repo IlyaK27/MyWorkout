@@ -12,7 +12,7 @@ class WorkoutController extends Controller
     // Show all Workouts
     public function index(){
         return view('workouts.workouts', [
-            'workouts' => Workout::latest()->filter(request(['tag', 'search']))->paginate(4)
+            'workouts' => Workout::visibile()->latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
 
@@ -174,13 +174,21 @@ class WorkoutController extends Controller
             'index' => 'required'
         ]);
 
-        $exercises = substr($workout->exercises, 0, $formFields['index'] * 2 - 1) . substr($workout->exercises, $formFields['index'] * 2 + 1);
+        $exercises = explode(',', $workout->exercises);
+        array_splice($exercises, $formFields['index'], 1);
+        $exercises = implode(',', $exercises);
 
-        $sets = substr($workout->sets, 0, $formFields['index'] * 2 - 1) . substr($workout->sets, $formFields['index'] * 2 + 1);
+        $sets = explode(',', $workout->sets);
+        array_splice($sets, $formFields['index'], 1);
+        $sets = implode(',', $sets);
         
-        $reps = substr($workout->reps, 0, $formFields['index'] * 2 - 1) . substr($workout->reps, $formFields['index'] * 2 + 1);
+        $reps = explode(',', $workout->reps);
+        array_splice($reps, $formFields['index'], 1);
+        $reps = implode(',', $reps);
 
-        $rest = substr($workout->rest, 0, $formFields['index'] * 2 - 1) . substr($workout->rest, $formFields['index'] * 2 + 1);
+        $rest = explode(',', $workout->rest);
+        array_splice($rest, $formFields['index'], 1);
+        $rest = implode(',', $rest);
 
         $newData = array("exercises" => $exercises, "sets" => $sets, "reps" => $reps, "rest" => $rest);
         $workout->update($newData);

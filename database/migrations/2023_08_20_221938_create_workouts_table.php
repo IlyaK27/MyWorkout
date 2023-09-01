@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('workouts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('logo')->nullable();
             $table->string('title');
             $table->string('tags');
             $table->longText('description');
             $table->timestamps();
+            $table->string('exercises')->nullable()->default(null);
+            $table->string('sets')->nullable()->default(null);
+            $table->string('reps')->nullable()->default(null);
+            $table->string('rest')->nullable()->default(null);
+            $table->string('visibility')->default('Private');
+            $table->string('logo')->nullable()->default(null);
         });
     }
 

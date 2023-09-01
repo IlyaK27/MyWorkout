@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('tags');
             $table->longText('description');
+            $table->string('logo')->nullable()->default(null);
             $table->timestamps();
         });
     }

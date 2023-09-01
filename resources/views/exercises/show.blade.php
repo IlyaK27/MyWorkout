@@ -6,8 +6,8 @@
                     <x-card class="p-10">
                         <div class="flex flex-col items-center justify-center text-center">
                             <img
-                                class="w-48 mr-6 mb-6"
-                                {{--src="{{$exercise->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png')}}"--}}
+                                class="w-48 mr-6 mb-4"
+                                src="{{$exercise->logo ? asset('images/exercise-icons/' . $exercise->logo) : asset('/images/no-exercise-image.png')}}"
                                 alt=""
                             />
     

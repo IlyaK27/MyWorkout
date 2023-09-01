@@ -14,7 +14,7 @@
             <div class="flex flex-col items-center justify-center text-center">
                 <img
                     class="w-48 mr-6 mb-6"
-                    {{--src="{{$exercise->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png')}}"--}}
+                    src="{{$workout->logo ? asset('storage/' . $workout->logo) : asset('/images/no-workout-image.png')}}"
                     alt=""
                 />
     
@@ -22,7 +22,7 @@
                 @if($workout->visibility == "Public")
                     <h3 class="mb-3" style="font-size: 20px">By: {{$name}}</h3>
                 @endif
-                <x-exercise-tags :tagsCsv="$workout->tags"/>
+                <x-workout-tags :tagsCsv="$workout->tags"/>
                 <div class="border border-gray-200 w-full mt-4 mb-6"></div>
                 <div>
                     <h3 class="text-3xl font-bold mb-4">
@@ -31,6 +31,17 @@
                     <div class="text-lg space-y-6">
                         {{$workout->description}}
                     </div>
+                </div>
+                <div class="border border-gray-200 w-full mt-4 mb-6"></div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-4">
+                        Exercises
+                    </h3>
+                    <table class="w-full table-auto rounded-sm">
+                        <tbody>
+                            <x-workout-info :workout="$workout"/>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </x-card>

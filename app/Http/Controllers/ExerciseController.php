@@ -26,7 +26,7 @@ class ExerciseController extends Controller
     // Show Selectable Exercises
     public function select(Workout $workout){
         return view('workouts.select', [
-            'exercises' => Exercise::latest()->filter(request(['tag', 'search']))->paginate(8)
+            'exercises' => Exercise::latest()->filter(request(['tag', 'search']))->paginate(6)
         ], ['workout' => $workout]);
     }
 }

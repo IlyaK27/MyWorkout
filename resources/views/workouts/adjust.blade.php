@@ -4,7 +4,6 @@
             <h2 class="text-2xl font-bold uppercase mb-1">
                 Adjust Exercise
             </h2>
-            {{--<p class="mb-4">Edit: {{$workout->title}}</p>--}}
         </header>
         <?php
             $allsets = explode(',', $workout->sets);
@@ -25,7 +24,7 @@
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="sets" 
-                    placeholder="Example: Chest Day" value="{{$sets}}"
+                    placeholder="Example: 3,4" value="{{$sets}}"
                 />
                 @error('title')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -40,7 +39,7 @@
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="reps"
-                    placeholder="Example: Chest, Arms, Back, etc" value="{{$reps}}"
+                    placeholder="Example: 3,4,5, etc" value="{{$reps}}"
                 />
                 @error('tags')
                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>

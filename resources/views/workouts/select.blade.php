@@ -2,7 +2,7 @@
     <h1 class="text-3xl text-center font-bold my-6 uppercase">
         Select Exercise
     </h1>
-    @include('exercise_partials._search')
+    @include('exercise_partials._select-search')
     <form method="POST" action="/workouts/{{$workout->id}}/customize/select" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -10,7 +10,7 @@
         @unless(count($exercises) == 0)
 
         @foreach($exercises as $exercise)
-            <x-exercise-selector :exercise="$exercise" /> 
+            <x-exercise-selector :exercise="$exercise" :workout="$workout" /> 
         @endforeach
 
         @else
